@@ -8,6 +8,11 @@ app.use(cors());
 
 app.set('port', process.env.port || 3000);
 
+app.get('/', (req, res, next) =>{
+    res.send('<h1>Running :)<h1>');
+})
+
+
 app.get('/test', (req, res, next) =>{
     res.send('<h1>Aliveeeee<h1>');
 })
