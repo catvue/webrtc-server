@@ -12,7 +12,7 @@ app.get('/test', (req, res, next) =>{
     res.send('<h1>Aliveeeee<h1>');
 })
 
-const wsServer = new WebSocket.Server({ port: 8080 });
+const wsServer = new WebSocket.Server({ server: app });
 
 let i = 0;
 function generateId() {
