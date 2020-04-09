@@ -1,6 +1,0 @@
-{
-    "name": "js-webrtc-server",
-    "description": "web rtc server",
-    "repository": "https://github.com/catvue/webrtc-server",
-    "keywords": ["node", "express", "static"]
-  }
