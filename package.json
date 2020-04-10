@@ -1,28 +1,28 @@
 {
   "name": "webrtc-server",
   "version": "1.0.0",
+  "description": "web rtc server..",
   "engines": {
     "node": "12.x"
   },
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/catvue/webrtc-server.git"
-  },
-  "homepage": "https://github.com/catvue/webrtc-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ws": "^7.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catvue/webrtc-server.git"
   },
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/catvue/webrtc-server#readme"
 }
