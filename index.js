@@ -17,6 +17,10 @@ app.get('/test', (req, res, next) =>{
     res.send('<h1>Aliveeeee<h1>');
 })
 
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
 const wsServer = new WebSocket.Server({ server: app });
 
 let i = 0;
