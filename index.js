@@ -1,20 +1,14 @@
-const express = require('express');
-const app = express();
-const cors = require('cors')
+const express = require('express')
+const path = require('path')
+const cors = require('cors');
 const WebSocket = require('ws');
-const path = require('path');
 
-app.use(cors());
+const PORT = process.env.PORT || 5000
 
-app.set('port', process.env.port || 3000);
-
-app.get('/test', (req, res, next) =>{
-    res.send('<h1>Aliveeeee<h1>');
-})
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
+let app = express()
+  .use(cors())
+  .get('/', (req, res) => res.send('<h1>hi</h1>'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 const wsServer = new WebSocket.Server({ server: app });
 
@@ -122,8 +116,4 @@ wsServer.on('connection', function connection(ws) {
     catch (ex) {
         console.error(ex);
     }
-})
-
-app.listen(app.get('port'), server =>{
-    console.info(`Server listen on port ${app.get('port')}`);
 })
