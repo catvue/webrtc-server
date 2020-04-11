@@ -12,7 +12,7 @@ let app = express()
 
 const wsServer = new WebSocket.Server({ server: app });
 
-let i = 0;
+let i = 1;
 function generateId() {
     return (i++).toString();
 }
