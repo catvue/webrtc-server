@@ -29,7 +29,8 @@ let ErrorCodes = {
     EmptyMessage: 1,
     InvalidType: 2,
     InvalidData: 3,
-    PeerNotFound: 4
+    PeerNotFound: 4,
+    ServerError: 5
 }
 
 let connections = new Map();
@@ -63,13 +64,14 @@ wsServer.on('connection', function connection(ws) {
                     res = { error: ErrorCodes.EmptyMessage };
                 }
                 else {
+                    let to = message.to || null;
                     switch(message.type) {
                         case MessageType.NewUserId:
                             break; 
                         case MessageType.Offer:
                         case MessageType.Answer:
                             if (!validateMessage(message)) {
-                                res = { error: ErrorCodes.InvalidData };
+                                res = { error: ErrorCodes.InvalidData, to };
                             }
                             else {
                                 let connection = connections.get(message.to)
@@ -78,18 +80,19 @@ wsServer.on('connection', function connection(ws) {
                                     connection.send(JSON.stringify({ type: message.type, data: message.data, from: userId }));
                                 }
                                 else {
-                                    res = { error: ErrorCodes.PeerNotFound };
+                                    res = { error: ErrorCodes.PeerNotFound, to };
                                 }
                             }   
                             break;
                         default:
-                            res = { error: ErrorCodes.InvalidType }
+                            res = { error: ErrorCodes.InvalidType, to }
                             break;
                     }
                 }
             }
             catch (ex) {
                 console.error(ex);
+                res = { error: ErrorCodes.ServerError }
             }
 
             if (res) {
