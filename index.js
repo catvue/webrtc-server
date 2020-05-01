@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors');
 const WebSocket = require('ws');
+const nanoid = require('nanoid');
 //const fs = require('fs');
 //const https = require('https');
 
@@ -31,10 +32,7 @@ server.listen(PORT, () => console.log(`Listening on ${PORT}`))*/
 
 const wsServer = new WebSocket.Server({ server: app});
 
-let i = 1;
-function generateId() {
-    return (i++).toString();
-}
+let generateId =  nanoid.customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 10);
 
 let MessageType = {
     NewUserId: 1,
